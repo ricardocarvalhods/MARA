@@ -120,8 +120,7 @@ conectaDB <- function(nomeConexaoODBC){
 #' dadosESFINGE <- runSQLonDB("Esfinge", "Query_Esfinge_GABCRG_Punidos.sql")
 #' @export
 runSQLonDB <- function(nomeConexaoODBC, nomeArquivoComSQL=NULL, querySQL=NULL, padCPFeCNPJ=TRUE, showSuccessMessage=TRUE){
-  source('funcoes_limpeza.R')
-  
+
   conn <- conectaDB(nomeConexaoODBC)
   
   queryCorruptos <- ""
