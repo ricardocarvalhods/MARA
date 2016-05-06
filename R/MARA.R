@@ -78,12 +78,24 @@ conectaDB <- function(nomeConexaoODBC){
   logins <- readLines('database_logins.txt')
   
   datasource <- grep(nomeConexaoODBC, logins)
-  usuario <- logins[datasource + 1]
-  senha <- logins[datasource + 2]
   
-  conn <- odbcConnect(nomeConexaoODBC, uid=usuario, pwd=senha)
+  if(length(datasource)==0){
+    msg <- paste0("\n[ERRO] Não foi encontrado o data source especificado (", 
+                nomeConexaoODBC,
+                ") no arquivo database_logins.txt armazendo no Working Directory atual (",
+                getwd(),
+                ")")
+    cat(msg)
+    return(NULL)
+  }
+  else {
+    usuario <- logins[datasource + 1]
+    senha <- logins[datasource + 2]
   
-  return(conn)
+    conn <- odbcConnect(nomeConexaoODBC, uid=usuario, pwd=senha)
+  
+    return(conn)
+  }
 }
 
 #' Executar SQL em SGBD
