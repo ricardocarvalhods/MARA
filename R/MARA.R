@@ -82,7 +82,7 @@ conectaDB <- function(nomeConexaoODBC){
   if(length(datasource)==0){
     msg <- paste0("\n[ERRO] Não foi encontrado o data source especificado (", 
                 nomeConexaoODBC,
-                ") no arquivo database_logins.txt armazendo no Working Directory atual (",
+                ") no arquivo database_logins.txt armazenado no Working Directory atual (",
                 getwd(),
                 ")")
     cat(msg)
