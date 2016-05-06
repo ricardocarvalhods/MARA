@@ -9,21 +9,23 @@ Pacote do R que reúne diversas funções utilitárias de aplicação geral no p
 --------------
 
 ### Para instalar pacote
+Para instalar o MARA, deve-se usar o comando **install_github** do pacote **devtools**.
 ```
-# Instalar pré-requisitos
-install.packages("RODBC")
-install.packages("dummies")
-install.packages("stringr")
+# Instalar devtools
 install.packages("devtools")
 
 # Instalar MARA
 library(devtools)
-install_github("ricardoscr/MARA")
+install_github("ricardoscr/MARA") 
+
+# Carregar MARA
 library(MARA)
 ```
 
 ### Funções e documentação
 As funções da versão atual podem ter a documentação correspondente acessada como segue.
+
+**As funções que exigem outros pacotes os instalam automaticamente caso não estejam instalados.**
 ```
 ## Funções de Bancos de Dados
 ?instrucoes.MySQL
