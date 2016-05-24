@@ -217,7 +217,7 @@ insertDataIntoDB <- function(nomeConexaoODBC, dadosNOVOS, nomeTabela, verboseIns
   else {
     conn <- conectaDB(nomeConexaoODBC)
     
-    saveResult <- sqlSave(conn, dadosNOVOS, tablename=nomeTabela, append=TRUE, verbose=verbose, rownames=FALSE)        
+    saveResult <- sqlSave(conn, dadosNOVOS, tablename=nomeTabela, append=TRUE, verbose=verboseInsert, rownames=FALSE)        
     odbcClose(conn)
     if(saveResult == 1){
       if(showSuccessMessage){
