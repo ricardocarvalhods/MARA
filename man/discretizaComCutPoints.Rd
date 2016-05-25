@@ -15,24 +15,24 @@ discretizaComCutPoints(coluna, cut.points)
 factor com coluna discretizada por cut.points.
 }
 \description{
-Esta funÁ„o transforma uma coluna numÈrica em factor, separando os valores da
+Esta fun√ß√£o transforma uma coluna num√©rica em factor, separando os valores da
 coluna a partir dos cut points definidos.
 }
 \details{
-Esta funÁ„o transforma uma coluna numÈrica em factor, separando os valores da
+Esta fun√ß√£o transforma uma coluna num√©rica em factor, separando os valores da
 coluna a partir dos cut points definidos.
-Portanto, esta funÁ„o n„o define os cut.points, ela sÛ os aplica em uma coluna
+Portanto, esta fun√ß√£o n√£o define os cut.points, ela s√≥ os aplica em uma coluna
 para obter o resultado discretizado.
-Os limites inferior e superio usados s„o -Inf e Inf.
-Os intervalos s„o sempre definidos excluindo o menor valor e incluindo o maior valor.
+Os limites inferior e superio usados s√£o -Inf e Inf.
+Os intervalos s√£o sempre definidos excluindo o menor valor e incluindo o maior valor.
 }
 \examples{
 # Dados do exemplo
 xcoluna <- c(rep(1,10), rep(100,10), rep(1000,10))
 xclasse <- c(rep(0,10), rep(1,10), rep(0,10))
 dados <- cbind(xcoluna, xclasse)
-# Realizar discretizaÁ„o via CAIM para obter cut.points
-# … mÈtodo supervisionado, portanto, discretiza xcoluna "vendo" xclasse
+# Realizar discretiza√ß√£o via CAIM para obter cut.points
+# √â m√©todo supervisionado, portanto, discretiza xcoluna "vendo" xclasse
 require(discretization)
 discret <- disc.Topdown(dados, method = 1) # CAIM
 # Extrair cut.points
@@ -46,4 +46,5 @@ Ricardo S. Carvalho
 \seealso{
 \code{limpaCaracteres}, \code{getDFcomDummyCols}
 }
+
 
