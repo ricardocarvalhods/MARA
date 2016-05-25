@@ -68,7 +68,7 @@ instrucoes.SQLServer <- function(){
   ")
 }
 
-conectaDB <- function(nomeConexaoODBC){
+conectaDB <- function(nomeConexaoODBC, nomeBanco=NULL){
   # LIBRARIES
   if(!require(RODBC)) {
     install.packages("RODBC")
@@ -92,7 +92,13 @@ conectaDB <- function(nomeConexaoODBC){
     usuario <- logins[datasource + 1]
     senha <- logins[datasource + 2]
   
-    conn <- odbcConnect(nomeConexaoODBC, uid=usuario, pwd=senha)
+    if(is.null(nomeBanco)){
+      conn <- odbcConnect(nomeConexaoODBC, uid=usuario, pwd=senha)
+    }
+    else {
+      conn <- odbcDriverConnect( paste0("Driver=SQL Server; Server=", nomeConexaoODBC, 
+                    "; Database=", nomeBanco, "; Uid=", usuario, "; Pwd=", senha, "") )
+    }
   
     return(conn)
   }
@@ -186,6 +192,7 @@ runSQLonDB <- function(nomeConexaoODBC, nomeArquivoComSQL=NULL, querySQL=NULL, p
 #' @param dadosNOVOS data frame com dados a serem inseridos. Deve conter colunas com
 #' exatamente os mesmos nomes que as colunas da tabela onde dados serão inseridos 
 #' (case sensitive).
+#' @param nomeBanco nome do banco de dados do SGBD onde dados serão inseridos.
 #' @param nomeTabela nome da tabela do SGBD onde dados serão inseridos.
 #' @param verboseInsert flag que define se deve exibir mensagens de inserção do SGBD.
 #' @param showSuccessMessage flag que define se a mensagem de sucesso deverá ser exibida.
@@ -210,12 +217,12 @@ runSQLonDB <- function(nomeConexaoODBC, nomeArquivoComSQL=NULL, querySQL=NULL, p
 #' # na tabela dbo.natresp localizada no dw_mara_stage
 #' insertDataIntoDB('sed-die-bd1-c', df_NatResp, 'natresp')
 #' @export
-insertDataIntoDB <- function(nomeConexaoODBC, dadosNOVOS, nomeTabela, verboseInsert=FALSE, showSuccessMessage=TRUE){
+insertDataIntoDB <- function(nomeConexaoODBC, dadosNOVOS, nomeBanco=NULL, nomeTabela, verboseInsert=FALSE, showSuccessMessage=TRUE){
   if(nrow(dadosNOVOS) == 0){
     return("[OK] Nao ha novos dados para insercao")
   }
   else {
-    conn <- conectaDB(nomeConexaoODBC)
+    conn <- conectaDB(nomeConexaoODBC, nomeBanco)
     
     saveResult <- sqlSave(conn, dadosNOVOS, tablename=nomeTabela, append=TRUE, verbose=verboseInsert, rownames=FALSE)        
     odbcClose(conn)
