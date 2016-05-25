@@ -2,24 +2,24 @@
 % Please edit documentation in R/MARA.R
 \name{instrucoes.MySQL}
 \alias{instrucoes.MySQL}
-\title{Instruções para uso de MySQL}
+\title{InstruÃ§Ãµes para uso de MySQL}
 \usage{
 instrucoes.MySQL()
 }
 \value{
-mensagem com instruções.
+mensagem com instruÃ§Ãµes.
 }
 \description{
-Esta função informa passos de como ficar pronto para realizar consultas a um
-SGBD MySQL (versões 3 ou 5).
+Esta funÃ§Ã£o informa passos de como ficar pronto para realizar consultas a um
+SGBD MySQL (versÃµes 3 ou 5).
 }
 \details{
-Esta função não recebe argumentos e retorna um texto que informa os passos para
-habilitar o uso uma máquina Windows para realização de consultas e inserções
-de dados em um SGBD MySQL (versões 3 ou 5).
+Esta funÃ§Ã£o nÃ£o recebe argumentos e retorna um texto que informa os passos para
+habilitar o uso uma mÃ¡quina Windows para realizaÃ§Ã£o de consultas e inserÃ§Ãµes
+de dados em um SGBD MySQL (versÃµes 3 ou 5).
 }
 \examples{
-# Exibir mensagem com instruções
+# Exibir mensagem com instruÃ§Ãµes
 instrucoes.MySQL()
 }
 \author{
@@ -28,4 +28,5 @@ Ricardo S. Carvalho
 \seealso{
 \code{instrucoes.SQLServer}, \code{insertDataIntoDB}, \code{runSQLonDB}
 }
+
 
