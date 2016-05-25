@@ -4,40 +4,42 @@
 \alias{insertDataIntoDB}
 \title{Inserir dados em tabela de SGBD}
 \usage{
-insertDataIntoDB(nomeConexaoODBC, dadosNOVOS, nomeTabela,
+insertDataIntoDB(nomeConexaoODBC, dadosNOVOS, nomeBanco = NULL, nomeTabela,
   verboseInsert = FALSE, showSuccessMessage = TRUE)
 }
 \arguments{
 \item{nomeConexaoODBC}{nome do Data Source configurado para o SGBD desejado.}
 
 \item{dadosNOVOS}{data frame com dados a serem inseridos. Deve conter colunas com
-exatamente os mesmos nomes que as colunas da tabela onde dados ser„o inseridos 
+exatamente os mesmos nomes que as colunas da tabela onde dados ser√£o inseridos 
 (case sensitive).}
 
-\item{nomeTabela}{nome da tabela do SGBD onde dados ser„o inseridos.}
+\item{nomeBanco}{nome do banco de dados do SGBD onde dados ser√£o inseridos.}
 
-\item{verboseInsert}{flag que define se deve exibir mensagens de inserÁ„o do SGBD.}
+\item{nomeTabela}{nome da tabela do SGBD onde dados ser√£o inseridos.}
 
-\item{showSuccessMessage}{flag que define se a mensagem de sucesso dever· ser exibida.}
+\item{verboseInsert}{flag que define se deve exibir mensagens de inser√ß√£o do SGBD.}
+
+\item{showSuccessMessage}{flag que define se a mensagem de sucesso dever√° ser exibida.}
 }
 \value{
 mensagem de erro ou sucesso.
 }
 \description{
-Esta funÁ„o se conecta a um SGBD definido por um Data Source configurado e 
-usa usu·rio/senha obtidos em arquivo database_logins.txt e insere dados passados
+Esta fun√ß√£o se conecta a um SGBD definido por um Data Source configurado e 
+usa usu√°rio/senha obtidos em arquivo database_logins.txt e insere dados passados
 na tabela escolhida.
 }
 \details{
-Esta funÁ„o inicialmente lÍ o arquivo database_logins.txt que deve estar na
-mesma pasta do Working Directory (definido com setwd) e obtÈm usu·rio e senha 
+Esta fun√ß√£o inicialmente l√™ o arquivo database_logins.txt que deve estar na
+mesma pasta do Working Directory (definido com setwd) e obt√©m usu√°rio e senha 
 para o Data Source indicado como argumento. 
 Em seguida, insere data frame dadosNOVOS na tabela nomeTabela.
 O objeto dadosNOVOS deve conter colunas com exatamente os mesmos nomes que as colunas 
-da tabela onde dados ser„o inseridos (case sensitive).
-Para flag verboseInsert setada, as mensagens do SGBD para o insert s„o exibidas.
+da tabela onde dados ser√£o inseridos (case sensitive).
+Para flag verboseInsert setada, as mensagens do SGBD para o insert s√£o exibidas.
 Para flag showSuccessMessage setada, havendo sucesso na consulta, a mensagem
-de sucesso padr„o È exibida. Caso sejam executados v·rios inserts em sequÍncia,
+de sucesso padr√£o √© exibida. Caso sejam executados v√°rios inserts em sequ√™ncia,
 recomenda-se definir showSuccessMessage como FALSE, pois assim somente aparece
 mensagem em caso de ERRO em algum insert.
 }
