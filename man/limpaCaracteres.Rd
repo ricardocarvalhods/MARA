@@ -9,28 +9,28 @@ limpaCaracteres(coluna, removeEspacos = FALSE, metodoTRANSLIT = TRUE)
 \arguments{
 \item{coluna}{vetor que deve ser limpo.}
 
-\item{removeEspacos}{flag que define se deve remover completamente os espaÁos em branco.}
+\item{removeEspacos}{flag que define se deve remover completamente os espa√ßos em branco.}
 
-\item{metodoTRANSLIT}{flag que define se ser· usado mÈtodo ASCII/TRANSLIT para limpeza de acentos.
-Caso seja FALSE usar· convers„o de latin para ASCII como mÈtodo para limpeza de acentos.}
+\item{metodoTRANSLIT}{flag que define se ser√° usado m√©todo ASCII/TRANSLIT para limpeza de acentos.
+Caso seja FALSE usar√° convers√£o de latin para ASCII como m√©todo para limpeza de acentos.}
 }
 \value{
 vetor limpo.
 }
 \description{
-Esta funÁ„o realiza diversas limpezas para um vetor/coluna do tipo character.
+Esta fun√ß√£o realiza diversas limpezas para um vetor/coluna do tipo character.
 }
 \details{
-Esta funÁ„o realiza as seguintes limpezas: caso flag removeEspacos seja TRUE remove
-completamente todos os espaÁos do vetor; remove acentuaÁ„o, por um de dois mÈtodos 
+Esta fun√ß√£o realiza as seguintes limpezas: caso flag removeEspacos seja TRUE remove
+completamente todos os espa√ßos do vetor; remove acentua√ß√£o, por um de dois m√©todos 
 (ASCII//TRANSLIT ou latin para ASCII) escolhido pelo flag metodoTRANSLIT; remove
-espaÁos que ficam no comeÁo ou fim; remove pontuaÁıes; e transforma textos em mai˙sculo.
+espa√ßos que ficam no come√ßo ou fim; remove pontua√ß√µes; e transforma textos em mai√∫sculo.
 }
 \examples{
 # Limpar coluna nm_pessoa do data frama DFRFB
-# N„o removendo espaÁos em branco e usando mÈtodo TRANSLIT de remoÁ„o de acentuaÁ„o
+# N√£o removendo espa√ßos em branco e usando m√©todo TRANSLIT de remo√ß√£o de acentua√ß√£o
 DFRFB$nm_pessoa <- limpaCaracteres(DFRFB$nm_pessoa)
-# Caso n„o funcione a limpeza com mÈtodo TRANSLIT, tentar convers„o latin1 para ASCII
+# Caso n√£o funcione a limpeza com m√©todo TRANSLIT, tentar convers√£o latin1 para ASCII
 DFRFB$nm_pessoa <- limpaCaracteres(DFRFB$nm_pessoa, metodoTRANSLIT=FALSE)
 }
 \author{
@@ -39,4 +39,5 @@ Ricardo S. Carvalho
 \seealso{
 \code{getDFcomDummyCols}, \code{discretizaComCutPoints}
 }
+
 
