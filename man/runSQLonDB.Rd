@@ -10,33 +10,33 @@ runSQLonDB(nomeConexaoODBC, nomeArquivoComSQL = NULL, querySQL = NULL,
 \arguments{
 \item{nomeConexaoODBC}{nome do Data Source configurado para o SGBD desejado.}
 
-\item{nomeArquivoComSQL}{nome do arquivo .sql a ser executado. SÛ executa caso n„o
+\item{nomeArquivoComSQL}{nome do arquivo .sql a ser executado. S√≥ executa caso n√£o
 haja objeto querySQL definido.}
 
 \item{querySQL}{objeto de texto/character com comando SQL a ser executado.}
 
 \item{padCPFeCNPJ}{flag que define se deve haver padding de colunas de CPF e/ou CNPJ.}
 
-\item{showSuccessMessage}{flag que define se a mensagem de sucesso dever· ser exibida.}
+\item{showSuccessMessage}{flag que define se a mensagem de sucesso dever√° ser exibida.}
 }
 \value{
 um data frame com resultado do SQL.
 }
 \description{
-Esta funÁ„o se conecta a um SGBD definido por um Data Source configurado e 
-usa usu·rio/senha obtidos em arquivo database_logins.txt e executa SQL passado
+Esta fun√ß√£o se conecta a um SGBD definido por um Data Source configurado e 
+usa usu√°rio/senha obtidos em arquivo database_logins.txt e executa SQL passado
 via objeto ou arquivo.
 }
 \details{
-Esta funÁ„o inicialmente lÍ o arquivo database_logins.txt que deve estar na
-mesma pasta do Working Directory (definido com setwd) e obtÈm usu·rio e senha 
+Esta fun√ß√£o inicialmente l√™ o arquivo database_logins.txt que deve estar na
+mesma pasta do Working Directory (definido com setwd) e obt√©m usu√°rio e senha 
 para o Data Source indicado como argumento. 
-Em seguida, havendo objeto com SQL em querySQL, o mesmo È executado, caso contr·rio
+Em seguida, havendo objeto com SQL em querySQL, o mesmo √© executado, caso contr√°rio
 executa o arquivo .sql em nomeArquivoComSQL.
-Para flag padCPFeCNPJ setada, o resultado do SQL È tratado para realizar padding de
+Para flag padCPFeCNPJ setada, o resultado do SQL √© tratado para realizar padding de
 qualquer coluna contendo o texto cpf/CPF/cnpj/CNPJ.
 Para flag showSuccessMessage setada, havendo sucesso na consulta, a mensagem
-de sucesso padr„o È exibida. Caso sejam executados v·rios SQLs em sequÍncia,
+de sucesso padr√£o √© exibida. Caso sejam executados v√°rios SQLs em sequ√™ncia,
 recomenda-se definir showSuccessMessage como FALSE, pois assim somente aparece
 mensagem em caso de ERRO em algum SQL.
 }
@@ -51,4 +51,5 @@ Ricardo S. Carvalho
 \seealso{
 \code{insertDataIntoDB}, \code{instrucoes.SQLServer}, \code{instrucoes.MySQL}
 }
+
 
