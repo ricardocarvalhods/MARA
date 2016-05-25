@@ -9,18 +9,18 @@ getDFcomDummyCols(df.completo, cols.to.dummy)
 \arguments{
 \item{df.completo}{data frame completo, com todas as colunas.}
 
-\item{cols.to.dummy}{vetor com números indicando quais colunas de df.completo 
-deverão ser transformadas em dummy.}
+\item{cols.to.dummy}{vetor com nÃºmeros indicando quais colunas de df.completo 
+deverÃ£o ser transformadas em dummy.}
 }
 \value{
 df.completo combinado (cbind) com colunas transformadas em dummy.
 }
 \description{
-Esta função transforma colunas selecionadas em dummy e retorna o data frame
+Esta funÃ§Ã£o transforma colunas selecionadas em dummy e retorna o data frame
 original combinado (cbind) com as colunas dummy.
 }
 \details{
-Esta função transforma em dummy as colunas do df.completo nas posições definidas em 
+Esta funÃ§Ã£o transforma em dummy as colunas do df.completo nas posiÃ§Ãµes definidas em 
 cols.to.dummy e retorna o data frame original df.completo combinado (cbind) com as 
 colunas transformadas em dummy.
 }
@@ -34,4 +34,5 @@ Ricardo S. Carvalho
 \seealso{
 \code{limpaCaracteres}, \code{discretizaComCutPoints}
 }
+
 
