@@ -196,6 +196,7 @@ runSQLonDB <- function(nomeConexaoODBC, nomeArquivoComSQL=NULL, querySQL=NULL, p
 #' @param nomeTabela nome da tabela do SGBD onde dados serão inseridos.
 #' @param verboseInsert flag que define se deve exibir mensagens de inserção do SGBD.
 #' @param showSuccessMessage flag que define se a mensagem de sucesso deverá ser exibida.
+#' @param setIdentityInsert flag que define se deve setar Identity_Insert para On antes de inserir dados.
 #' @return mensagem de erro ou sucesso.
 #' @author Ricardo S. Carvalho
 #' @details
@@ -217,14 +218,21 @@ runSQLonDB <- function(nomeConexaoODBC, nomeArquivoComSQL=NULL, querySQL=NULL, p
 #' # na tabela dbo.natresp localizada no dw_mara_stage
 #' insertDataIntoDB('sed-die-bd1-c', df_NatResp, 'natresp')
 #' @export
-insertDataIntoDB <- function(nomeConexaoODBC, dadosNOVOS, nomeBanco=NULL, nomeTabela, verboseInsert=FALSE, showSuccessMessage=TRUE){
+insertDataIntoDB <- function(nomeConexaoODBC, dadosNOVOS, nomeBanco=NULL, nomeTabela, verboseInsert=FALSE, showSuccessMessage=TRUE, setIdentityInsert=FALSE){
   if(nrow(dadosNOVOS) == 0){
     return("[OK] Nao ha novos dados para insercao")
   }
   else {
     conn <- conectaDB(nomeConexaoODBC, nomeBanco)
     
-    saveResult <- sqlSave(conn, dadosNOVOS, tablename=nomeTabela, append=TRUE, verbose=verboseInsert, rownames=FALSE)        
+    if(setIdentityInsert){
+      sqlQuery(conn, paste0("Set Identity_Insert ", nomeBanco, ".", nomeTabela," On"), errors = TRUE)
+      saveResult <- sqlSave(conn, dadosNOVOS, tablename=nomeTabela, append=TRUE, verbose=verboseInsert, rownames=FALSE)
+      sqlQuery(conn, paste0("Set Identity_Insert ", nomeBanco, ".", nomeTabela," Off"), errors = TRUE)
+    }
+    else {
+      saveResult <- sqlSave(conn, dadosNOVOS, tablename=nomeTabela, append=TRUE, verbose=verboseInsert, rownames=FALSE)
+    }
     odbcClose(conn)
     if(saveResult == 1){
       if(showSuccessMessage){
