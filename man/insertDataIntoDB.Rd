@@ -5,7 +5,8 @@
 \title{Inserir dados em tabela de SGBD}
 \usage{
 insertDataIntoDB(nomeConexaoODBC, dadosNOVOS, nomeBanco = NULL, nomeTabela,
-  verboseInsert = FALSE, showSuccessMessage = TRUE)
+  verboseInsert = FALSE, showSuccessMessage = TRUE,
+  setIdentityInsert = FALSE)
 }
 \arguments{
 \item{nomeConexaoODBC}{nome do Data Source configurado para o SGBD desejado.}
@@ -21,6 +22,8 @@ exatamente os mesmos nomes que as colunas da tabela onde dados serão inseridos
 \item{verboseInsert}{flag que define se deve exibir mensagens de inserção do SGBD.}
 
 \item{showSuccessMessage}{flag que define se a mensagem de sucesso deverá ser exibida.}
+
+\item{setIdentityInsert}{flag que define se deve setar Identity_Insert para On antes de inserir dados.}
 }
 \value{
 mensagem de erro ou sucesso.
