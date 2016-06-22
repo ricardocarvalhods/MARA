@@ -5,7 +5,7 @@
 \title{Executar SQL em SGBD}
 \usage{
 runSQLonDB(nomeConexaoODBC, nomeArquivoComSQL = NULL, querySQL = NULL,
-  padCPFeCNPJ = TRUE, showSuccessMessage = TRUE)
+  nomeBanco = NULL, padCPFeCNPJ = TRUE, showSuccessMessage = TRUE)
 }
 \arguments{
 \item{nomeConexaoODBC}{nome do Data Source configurado para o SGBD desejado.}
@@ -14,6 +14,8 @@ runSQLonDB(nomeConexaoODBC, nomeArquivoComSQL = NULL, querySQL = NULL,
 haja objeto querySQL definido.}
 
 \item{querySQL}{objeto de texto/character com comando SQL a ser executado.}
+
+\item{nomeBanco}{nome do banco de dados do SGBD onde dados serão consultados.}
 
 \item{padCPFeCNPJ}{flag que define se deve haver padding de colunas de CPF e/ou CNPJ.}
 
@@ -51,5 +53,4 @@ Ricardo S. Carvalho
 \seealso{
 \code{insertDataIntoDB}, \code{instrucoes.SQLServer}, \code{instrucoes.MySQL}
 }
-
 
