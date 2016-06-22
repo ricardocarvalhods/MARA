@@ -114,6 +114,7 @@ conectaDB <- function(nomeConexaoODBC, nomeBanco=NULL){
 #' @param nomeArquivoComSQL nome do arquivo .sql a ser executado. Só executa caso não
 #' haja objeto querySQL definido.
 #' @param querySQL objeto de texto/character com comando SQL a ser executado.
+#' @param nomeBanco nome do banco de dados do SGBD onde dados serão consultados.
 #' @param padCPFeCNPJ flag que define se deve haver padding de colunas de CPF e/ou CNPJ.
 #' @param showSuccessMessage flag que define se a mensagem de sucesso deverá ser exibida.
 #' @return um data frame com resultado do SQL.
@@ -137,9 +138,9 @@ conectaDB <- function(nomeConexaoODBC, nomeBanco=NULL){
 #' # SQL encontra-se no arquivo de nome "Query_Esfinge_GABCRG_Punidos.sql"
 #' dadosESFINGE <- runSQLonDB("Esfinge", "Query_Esfinge_GABCRG_Punidos.sql")
 #' @export
-runSQLonDB <- function(nomeConexaoODBC, nomeArquivoComSQL=NULL, querySQL=NULL, padCPFeCNPJ=TRUE, showSuccessMessage=TRUE){
+runSQLonDB <- function(nomeConexaoODBC, nomeArquivoComSQL=NULL, querySQL=NULL, nomeBanco=NULL, padCPFeCNPJ=TRUE, showSuccessMessage=TRUE){
 
-  conn <- conectaDB(nomeConexaoODBC)
+  conn <- conectaDB(nomeConexaoODBC, nomeBanco)
   
   queryCorruptos <- ""
   if(is.null(querySQL)){
