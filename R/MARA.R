@@ -246,6 +246,61 @@ insertDataIntoDB <- function(nomeConexaoODBC, dadosNOVOS, nomeBanco=NULL, nomeTa
   }
 }
 
+
+#' Atualizar dados em tabela de SGBD
+#'
+#' Esta função se conecta a um SGBD definido por um Data Source configurado e 
+#' usa usuário/senha obtidos em arquivo database_logins.txt e atualiza dados passados
+#' na tabela escolhida considerando a chave indicada.
+#'
+#' @param nomeConexaoODBC nome do Data Source configurado para o SGBD desejado.
+#' @param dadosATUALIZAR data frame com dados a serem inseridos. Deve conter colunas com
+#' exatamente os mesmos nomes que as colunas da tabela onde dados serão inseridos 
+#' (case sensitive).
+#' @param nomeBanco nome do banco de dados do SGBD onde dados serão inseridos.
+#' @param nomeTabela nome da tabela do SGBD onde dados serão inseridos.
+#' @param chavePrimaria flag que define se deve exibir mensagens de inserção do SGBD.
+#' @param showSuccessMessage flag que define se a mensagem de sucesso deverá ser exibida.
+#' @return mensagem de erro ou sucesso.
+#' @author Ricardo S. Carvalho
+#' @details
+#' Esta função inicialmente lê o arquivo database_logins.txt que deve estar na
+#' mesma pasta do Working Directory (definido com setwd) e obtém usuário e senha 
+#' para o Data Source indicado como argumento. 
+#' Em seguida, atualiza dados do data frame dadosATUALIZAR na tabela nomeTabela.
+#' O objeto dadosATUALIZAR deve conter colunas com exatamente os mesmos nomes que as colunas 
+#' da tabela onde dados serão atualizados (case sensitive).
+#' Deve-se indicar ainda qual o campo considerado chave primária através do argumento chavePrimaria.
+#' Para flag showSuccessMessage setada, havendo sucesso na consulta, a mensagem
+#' de sucesso padrão é exibida.
+#' @seealso \code{runSQLonDB}, \code{insertDataIntoDB}, \code{instrucoes.SQLServer}, \code{instrucoes.MySQL}
+#' @import RODBC
+#' @examples
+#' # Atualizar dados de data frame df_RFB usando data source sed-die-bd1-c
+#' # na tabela dm_rfb.rfb localizada no banco dw_mara_stage com a chave primária nr_cpf
+#' updateDataInDB('sed-die-bd1-c', df_RFB, 'dw_mara_stage', 'dm_rfb.rfb', 'nr_cpf')
+#' @export
+updateDataInDB <- function(nomeConexaoODBC, dadosATUALIZAR, nomeBanco=NULL, nomeTabela, chavePrimaria, showSuccessMessage=TRUE){
+  if(nrow(dadosATUALIZAR) == 0){
+    return("[OK] Nao foram definidos dados para atualizacao")
+  }
+  else {
+    conn <- conectaDB(nomeConexaoODBC, nomeBanco)
+    
+    saveResult <- sqlUpdate(conn, dadosATUALIZAR, tablename=nomeTabela, index=chavePrimaria)
+    
+    odbcClose(conn)
+    if(saveResult == 1){
+      if(showSuccessMessage){
+        return("[OK] Dados atualizados com sucesso")
+      }
+    }
+    else{
+      return("[ERRO] Erro ao tentar atualizar dados")
+    }
+  }
+}
+
 padCPFeCNPJ <- function(dados){
   # LIBRARIES
   if(!require(stringr)) {
